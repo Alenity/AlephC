@@ -8,11 +8,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de6cb5f1-ca6a-4be7-addb-e39e4bc1cd6c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.AlephC/.idea/indexLayout.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.AlephC/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.AlephC/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlephC.sln" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlephC/alephCAudio.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlephC/audio.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlephC/camera.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlephC/fragShader.shad" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlephC/shader.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlephC/vertShader.shad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.AlephC/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlephC/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/AlephC.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/AlephC.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/AlephC.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/AlephC.vcxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.ilk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.obj" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.tlog/CL.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.tlog/CL.command.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.tlog/CL.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.tlog/link.read.1.tlog" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/glad.obj" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/glad.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/vc143.idb" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/vc143.idb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/vc143.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/vc143.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x64/Debug/AlephC.exe" beforeDir="false" afterPath="$PROJECT_DIR$/x64/Debug/AlephC.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/x64/Debug/AlephC.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/x64/Debug/AlephC.pdb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,10 +34,29 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="master" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/../../../../OpenGLThirdParty/Include/glad.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/AlephC/audio.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/AlephC/glad.c" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -31,37 +64,40 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="2hQ9Wl4znZbSLKXRbLrcXWZpb2Z" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;C++ Project.AlephC.executor&quot;: &quot;Run&quot;,
-    &quot;C++ Project.Local Windows Debugger.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;terminal&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "C++ Project.AlephC.executor": "Run",
+    "C++ Project.Local Windows Debugger.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.tools",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\Daniel\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\Daniel\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\Daniel\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\Daniel\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Daniel\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
+      "C:\\Users\\Daniel\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="AlephC" type="CppProject" factoryName="C++ Project">
       <configuration_1>
@@ -122,8 +158,25 @@
       <workItem from="1717575438032" duration="819000" />
       <workItem from="1717576270507" duration="12441000" />
       <workItem from="1717655676257" duration="2746000" />
-      <workItem from="1717795226045" duration="3346000" />
+      <workItem from="1717795226045" duration="4053000" />
+      <workItem from="1717828394287" duration="714000" />
+      <workItem from="1717837335573" duration="6968000" />
+      <workItem from="1717940976466" duration="3783000" />
+      <workItem from="1718009989530" duration="3395000" />
+      <workItem from="1718019759367" duration="3012000" />
+      <workItem from="1718091710923" duration="7484000" />
+      <workItem from="1718183862768" duration="3098000" />
+      <workItem from="1718200190749" duration="12849000" />
     </task>
+    <task id="LOCAL-00001" summary="First Commit, learnt about the&#10;render pipeline: &#10;- Vertex Shader (mutable)&#10;- Geometry Shader (mutable)&#10;- Shape Assembly&#10;- Test and Blending&#10;- Fragment Shader (mutable)&#10;- Rasterization&#10;Although I'm not fully confident on what VBOs and VAOs are">
+      <option name="closed" value="true" />
+      <created>1717799526723</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1717799526723</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,8 +184,14 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.fsh" />
+  </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="First Commit, learnt about the&#10;render pipeline: &#10;- Vertex Shader (mutable)&#10;- Geometry Shader (mutable)&#10;- Shape Assembly&#10;- Test and Blending&#10;- Fragment Shader (mutable)&#10;- Rasterization&#10;Although I'm not fully confident on what VBOs and VAOs are" />
+    <option name="LAST_COMMIT_MESSAGE" value="First Commit, learnt about the&#10;render pipeline: &#10;- Vertex Shader (mutable)&#10;- Geometry Shader (mutable)&#10;- Shape Assembly&#10;- Test and Blending&#10;- Fragment Shader (mutable)&#10;- Rasterization&#10;Although I'm not fully confident on what VBOs and VAOs are" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
