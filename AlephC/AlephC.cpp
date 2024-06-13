@@ -57,10 +57,10 @@ int main()
     GLFWwindow* window = glfwSetup();
     Camera camera;
     AudioSys soundEngine;
-    //soundEngine.play_single_sound("C:\\Users\\Daniel\\Code\\AlephC\\AlephC\\alephCAudio.wav");
+    soundEngine.play_single_sound("C:\\Users\\Daniel\\Code\\AlephC\\AlephC\\alephCAudio.wav");
 
-    Shader nShader("./vertShader.shad", "./fragShader.shad");
-
+    Shader worldShader("./vertShader.shad", "./fragShader.shad");
+    Shader uiShader("./uiShader.shad", "./fragShader.shad");
     
     float vertices1[] = {
         -0.5f, -0.5f, -0.5f,
@@ -136,13 +136,13 @@ int main()
     glBindVertexArray(0);
     glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     
-    int transformLoc = glGetUniformLocation(nShader.ID, "transform");
+    int transformLoc = glGetUniformLocation(worldShader.ID, "transform");
     
     
     while(!glfwWindowShouldClose(window))
     {
         // input checking:
-        
+        camera.get_delta_time();
         processInput(window, camera);
         
         // rendering goes here:
@@ -150,8 +150,11 @@ int main()
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        nShader.use();
+        uiShader.use();
         glBindVertexArray(vao1);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+
+        worldShader.use();
         
         glm::mat4 projection;
         projection = glm::perspective(glm::radians(60.0f), 800.0f / 600.0f, 0.1f, 100.0f);

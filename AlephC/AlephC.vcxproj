@@ -171,9 +171,11 @@
     <ClInclude Include="audio.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="widget.h" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fragShader.shad" />
+    <Content Include="uiShader.shad" />
     <Content Include="vertShader.shad" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

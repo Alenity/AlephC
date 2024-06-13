@@ -10,11 +10,14 @@
 class Camera
 {
     
-public:
+private:
     glm::vec3 cameraPos;
     glm::vec3 cameraFront; 
     glm::vec3 cameraUp;
-    float cameraSpeed = 0.05f;
+    
+    float deltaTime = 0.0f;
+    float lastFrame = 0.0f;
+public:
     
     Camera(glm::vec3 pos = glm::vec3(0.0f, 0.0f, 3.0f), glm::vec3 front = glm::vec3(0.0f, 0.0f, -1.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f,  0.0f))
     {
@@ -29,8 +32,16 @@ public:
         return view;
     }
 
+    void get_delta_time()
+    {
+        float currentTime = glfwGetTime();
+        deltaTime = currentTime - lastFrame;
+        lastFrame = currentTime;
+    }
+
     void move(GLFWwindow* window)
     {
+        float cameraSpeed = 2.5f*deltaTime;
         if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
             cameraPos += cameraSpeed * cameraFront;
         if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
@@ -44,5 +55,7 @@ public:
         if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
             cameraPos += cameraSpeed * cameraUp;
     }
+
+    
 };
 #endif
