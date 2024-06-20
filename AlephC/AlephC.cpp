@@ -1,15 +1,18 @@
 #include <glad.h>
 #include <glfw3.h>
-#include <iostream>
-#include <shader.h>
-#include <camera.h>
-#include <widgets.h>
-#include <ft2build.h>
-#include FT_FREETYPE_H
 #include <audio.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include <iostream>
+#include <shader.h>
+#include <camera.h>
+#include <widgets.h>
+#include <object.h>
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
+
 
 const unsigned int SCR_WIDTH = 1920;
 const unsigned int SCR_HEIGHT = 1080;
@@ -89,7 +92,7 @@ GLFWwindow* glfwSetup()
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     glfwSetCursorPosCallback(window, mouse_callback);
 
-    // glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    //glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     return window;
 }
 
@@ -99,17 +102,38 @@ GLFWwindow* glfwSetup()
 int main()
 {
     GLFWwindow* window = glfwSetup();
-    FT_Library fontLib;
-    fontLibSetup(fontLib);
-    FT_Face CMUSerif;
-    FT_New_Face(fontLib, "./assets/cmunci.ttf", 0, &CMUSerif);
+    // FT_Library fontLib;
+    // fontLibSetup(fontLib);
+    // FT_Face CMUSerif;
+    // FT_New_Face(fontLib, "./assets/cmunci.ttf", 0, &CMUSerif);
     AudioSys soundEngine;
     soundEngine.play_single_sound("./assets/alephCAudio.wav");
 
-    Shader worldShader("./vertShader.shad", "./fragShader.shad");
-    Shader uiShader("./uiShader.shad", "./fragShader.shad");
+    Shader uiShader("./uiVertShader.shad", "./uiFragShader.shad");
+    Shader worldShader("./worldVertShader.shad", "./worldFragShader.shad");
+    Shader lightShader("./worldVertShader.shad", "./lightFragShader.shad");
+
+    int objectColourLoc, lightColourLoc;
+    objectColourLoc = glGetUniformLocation(worldShader.ID, "objectColour");
+    lightColourLoc = glGetUniformLocation(worldShader.ID, "lightColour");
     
-    float vertices1[] = {
+    glEnable(GL_DEPTH_TEST);
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+    glm::vec3 cubePositions[] = {
+        glm::vec3( 0.0f,  0.0f,  0.0f), 
+        glm::vec3( 2.0f,  5.0f, -15.0f), 
+        glm::vec3(-1.5f, -2.2f, -2.5f),  
+        glm::vec3(-3.8f, -2.0f, -12.3f),  
+        glm::vec3( 2.4f, -0.4f, -3.5f),  
+        glm::vec3(-1.7f,  3.0f, -7.5f),  
+        glm::vec3( 1.3f, -2.0f, -2.5f),  
+        glm::vec3( 1.5f,  2.0f, -2.5f), 
+        glm::vec3( 1.5f,  0.2f, -1.5f), 
+          
+    };
+    cubeVertexArr standard =
+     {{
         -0.5f, -0.5f, -0.5f,
          0.5f, -0.5f, -0.5f,
          0.5f,  0.5f, -0.5f,
@@ -151,46 +175,23 @@ int main()
          0.5f,  0.5f,  0.5f,
         -0.5f,  0.5f,  0.5f,
         -0.5f,  0.5f, -0.5f
-    };
-
-    glm::vec3 cubePositions[] = {
-        glm::vec3( 0.0f,  0.0f,  0.0f), 
-        glm::vec3( 2.0f,  5.0f, -15.0f), 
-        glm::vec3(-1.5f, -2.2f, -2.5f),  
-        glm::vec3(-3.8f, -2.0f, -12.3f),  
-        glm::vec3( 2.4f, -0.4f, -3.5f),  
-        glm::vec3(-1.7f,  3.0f, -7.5f),  
-        glm::vec3( 1.3f, -2.0f, -2.5f),  
-        glm::vec3( 1.5f,  2.0f, -2.5f), 
-        glm::vec3( 1.5f,  0.2f, -1.5f), 
-        glm::vec3(-1.3f,  1.0f, -1.5f)  
-    };
-    
-    glEnable(GL_DEPTH_TEST);
-    unsigned int vao1, vbo1;
-    
-    glGenVertexArrays(1, &vao1);
-    glGenBuffers(1, &vbo1);
-
-    glBindVertexArray(vao1);
-
-    glBindBuffer(GL_ARRAY_BUFFER, vbo1);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices1), vertices1, GL_STATIC_DRAW);
-    
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-    
-    int transformLoc = glGetUniformLocation(worldShader.ID, "transform");
+    }};
+        
     
     float deltaTime = 0.0f;
     float lastFrame = 0.0f;
-
+    
+    Object3D cube(standard);
+    Object3D lightSource(standard);
+    
     widgetProps props;
-    props.margin = glm::vec4(0.1f, 0.1f, 0.1f, 0.1f);
-    Widget square(glm::vec3(-1.0f, 1.0f, 0.0f), props);
+    props.margin = glm::vec4(0.0f, 0.05f, 0.05f, 1.9f);
+    props.colour = glm::vec4(0.17f, 0.17f, 0.17f, 1.0f);
+    
+    glm::vec3 objectColour = glm::vec3(0.5f, 0.4f, 0.5f);
+    glm::vec3 lightColour = glm::vec3(1.0f, 1.0f, 1.0f);
+    
+    Widget square(glm::vec3(0.8f, 1.0f, 0.0f), props);
     
     while(!glfwWindowShouldClose(window))
     {
@@ -205,27 +206,20 @@ int main()
         
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
         
         square.draw(uiShader);
-
         worldShader.use();
-        glBindVertexArray(vao1);
+        glUniform3f(objectColourLoc, objectColour.x, objectColour.y, objectColour.z);
+        glUniform3f(lightColourLoc, lightColour.x, lightColour.y, lightColour.z);
 
-        glm::mat4 projection;
-        projection = glm::perspective(glm::radians(60.0f), 800.0f / 600.0f, 0.1f, 100.0f);
-
-        for (unsigned int i = 0; i < 10; i++)
+        for(auto cubePosition : cubePositions)
         {
-            glm::mat4 model = glm::mat4(1.0f);
-            model = glm::translate(model, cubePositions[i]);
-            glm::mat4 view = camera.get_view_mat4();
-            glm::mat4 trans = projection * view * model;
-            glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
-            glDrawArrays(GL_TRIANGLES, 0, 36);
+            cube.draw(cubePosition, worldShader, camera);
         }
         
-        glBindVertexArray(0);
+
+        lightSource.draw(glm::vec3(-1.3f,  1.0f, -1.5f), lightShader, camera);
+        
         
         // frame house-keeping:
         
@@ -233,8 +227,7 @@ int main()
         glfwPollEvents();
     }
 
-    glDeleteVertexArrays(1, &vao1);
-    glDeleteBuffers(1, &vbo1);
+    cube.clean();
     square.clean();
     
     glfwTerminate();

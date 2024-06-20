@@ -170,7 +170,9 @@
   <ItemGroup>
     <ClInclude Include="audio.h" />
     <ClInclude Include="camera.h" />
+    <ClInclude Include="object.h" />
     <ClInclude Include="shader.h" />
+    <ClInclude Include="types.h" />
     <ClInclude Include="widgets.h" />
   </ItemGroup>
   <ItemGroup>
@@ -178,9 +180,11 @@
     <Content Include="assets\cmunci.ttf" />
     <Content Include="assets\cmunrm.ttf" />
     <Content Include="assets\cmunti.ttf" />
-    <Content Include="fragShader.shad" />
-    <Content Include="uiShader.shad" />
-    <Content Include="vertShader.shad" />
+    <Content Include="lightFragShader.shad" />
+    <Content Include="uiFragShader.shad" />
+    <Content Include="worldFragShader.shad" />
+    <Content Include="uiVertShader.shad" />
+    <Content Include="worldVertShader.shad" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,18 +3,12 @@
 
 #include <glad.h>
 #include <glm/glm.hpp>
-#include <array>
 #include <shader.h>
+#include <types.h>
 
 
-struct widgetProps {
-    glm::vec4 padding = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
-    glm::vec4 margin = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
-    glm::vec4 colour = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-    int index = 0;
-};
 
-struct vertexArr
+struct uiVertexArr
 {
     float vertices[12];
 };
@@ -24,19 +18,21 @@ class Widget
 public:
     Widget(glm::vec3 position, widgetProps props)
     {
+        properties = props;
         pos = position;
-        pos.x += props.margin.x;
-        pos.y -= props.margin.y;
-        width = 1 - (pos.x + props.margin.z);
-        height = 2 - (1 - pos.y + props.margin.w);
+        pos.x += properties.margin.x;
+        pos.y -= properties.margin.y;
+        width = 1 - (pos.x + properties.margin.z);
+        height = 2 - (1 - pos.y + properties.margin.w);
         
-        vertexArr vert;
+        uiVertexArr vert;
         vert = genVertices();
 
         unsigned int indices[] = {
             0, 1, 3,
             0, 3, 2
         };
+        
 
         glGenVertexArrays(1, &VAO);
         
@@ -57,17 +53,20 @@ public:
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+        // properties.colourLoc = glGetUniformLocation(properties.shader.ID, "inputColour");
         
     }
     
     Widget(Widget &parent, widgetProps props)
     {
-        pos.x = parent.pos.x + parent.padding.x + props.margin.x;
-        pos.y = parent.pos.y - parent.padding.y - props.margin.y;
-        width = parent.width - (parent.padding.x + parent.padding.z + props.margin.x + props.margin.z);
-        height = parent.height - (parent.padding.y + parent.padding.w + props.margin.y + props.margin.w);
+        properties = props;
+        pos.x = parent.pos.x + parent.properties.padding.x + properties.margin.x;
+        pos.y = parent.pos.y - parent.properties.padding.y - properties.margin.y;
+        width = parent.width - (parent.properties.padding.x + parent.properties.padding.z + properties.margin.x + properties.margin.z);
+        height = parent.height - (parent.properties.padding.y + parent.properties.padding.w + properties.margin.y + properties.margin.w);
 
-        vertexArr vert;
+        uiVertexArr vert;
         vert = genVertices();
 
         unsigned int indices[] = {
@@ -94,16 +93,18 @@ public:
         glBindVertexArray(0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+        // properties.colourLoc = glGetUniformLocation(properties.shader.ID, "inputColour");
         
     }
 
-    vertexArr genVertices()
+    uiVertexArr genVertices()
     {
-        vertexArr vert;
+        uiVertexArr vert;
         // create x coords
         for (int i = 0; i < 12; i += 3)
         {
-            if(i%2 == 0)
+            if(i%2 == 0) 
             {
                 vert.vertices[i] = pos.x;
             }else
@@ -133,9 +134,11 @@ public:
         
     }
 
-    void draw(Shader shader)
+    void draw(Shader &uiShader)
     {
-        shader.use();
+        int colourLoc = glGetUniformLocation(uiShader.ID, "inputColour");
+        uiShader.use();
+        glUniform4f(colourLoc, properties.colour.x, properties.colour.y, properties.colour.z, properties.colour.w);
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
@@ -151,8 +154,7 @@ private:
     float width;
     float height;
     glm::vec3 pos = glm::vec3(0.0f, 0.0f, 0.0f);
-    glm::vec4 margin;
-    glm::vec4 padding;
+    widgetProps properties;
     unsigned int VAO, VBO, EBO;
 };
 
