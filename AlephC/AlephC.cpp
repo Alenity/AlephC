@@ -3,25 +3,65 @@
 #include <iostream>
 #include <shader.h>
 #include <camera.h>
+#include <widgets.h>
+#include <ft2build.h>
+#include FT_FREETYPE_H
 #include <audio.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+const unsigned int SCR_WIDTH = 1920;
+const unsigned int SCR_HEIGHT = 1080;
+Camera camera;
+float lastX = SCR_WIDTH / 2.0f;
+float lastY = SCR_HEIGHT / 2.0f;
+bool firstMouse = true;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     glViewport(0, 0, width, height);
 }
 
-void processInput(GLFWwindow* window, Camera &camera)
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+    if (firstMouse)
+    {
+        lastX = xpos;
+        lastY = ypos;
+        firstMouse = false;
+    }
+    float xoffset = xpos - lastX;
+    float yoffset = lastY - ypos; 
+    lastX = xpos;
+    lastY = ypos;
+
+    float sensitivity = 0.1f;
+    xoffset *= sensitivity;
+    yoffset *= sensitivity;
+
+    camera.mouse_callback(window, xoffset, yoffset);
+}
+
+void processInput(GLFWwindow* window, Camera &camera, float deltaTime)
 {
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
     {
         glfwSetWindowShouldClose(window, true);
        
     }
-    camera.move(window);
+    camera.move(window, deltaTime);
+}
+
+int fontLibSetup(FT_Library &library)
+{
+    FT_Error error = FT_Init_FreeType(&library);
+    if(error)
+    {
+        std::cout << "An error occured during font initialization\n";
+        return -1;
+    }
+    return 0;
 }
 
 GLFWwindow* glfwSetup()
@@ -30,7 +70,8 @@ GLFWwindow* glfwSetup()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    GLFWwindow* window = glfwCreateWindow(1920, 1080, "AlephC", nullptr, nullptr);
+    glfwWindowHint(GLFW_REFRESH_RATE, GLFW_DONT_CARE);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "AlephC", nullptr, nullptr);
     if (window == nullptr)
     {
         std::cout << "Failed to create GLFW window\n";
@@ -44,8 +85,11 @@ GLFWwindow* glfwSetup()
         
     }
 
-    glViewport(0, 0, 1920, 1080);
+    glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetCursorPosCallback(window, mouse_callback);
+
+    // glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     return window;
 }
 
@@ -55,9 +99,12 @@ GLFWwindow* glfwSetup()
 int main()
 {
     GLFWwindow* window = glfwSetup();
-    Camera camera;
+    FT_Library fontLib;
+    fontLibSetup(fontLib);
+    FT_Face CMUSerif;
+    FT_New_Face(fontLib, "./assets/cmunci.ttf", 0, &CMUSerif);
     AudioSys soundEngine;
-    soundEngine.play_single_sound("C:\\Users\\Daniel\\Code\\AlephC\\AlephC\\alephCAudio.wav");
+    soundEngine.play_single_sound("./assets/alephCAudio.wav");
 
     Shader worldShader("./vertShader.shad", "./fragShader.shad");
     Shader uiShader("./uiShader.shad", "./fragShader.shad");
@@ -138,24 +185,33 @@ int main()
     
     int transformLoc = glGetUniformLocation(worldShader.ID, "transform");
     
+    float deltaTime = 0.0f;
+    float lastFrame = 0.0f;
+
+    widgetProps props;
+    props.margin = glm::vec4(0.1f, 0.1f, 0.1f, 0.1f);
+    Widget square(glm::vec3(-1.0f, 1.0f, 0.0f), props);
     
     while(!glfwWindowShouldClose(window))
     {
+        
+        float currentTime = glfwGetTime();
+        deltaTime = currentTime - lastFrame;
+        lastFrame = currentTime;
         // input checking:
-        camera.get_delta_time();
-        processInput(window, camera);
+        processInput(window, camera, deltaTime);
         
         // rendering goes here:
         
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        uiShader.use();
-        glBindVertexArray(vao1);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        
+        square.draw(uiShader);
 
         worldShader.use();
-        
+        glBindVertexArray(vao1);
+
         glm::mat4 projection;
         projection = glm::perspective(glm::radians(60.0f), 800.0f / 600.0f, 0.1f, 100.0f);
 
@@ -179,6 +235,7 @@ int main()
 
     glDeleteVertexArrays(1, &vao1);
     glDeleteBuffers(1, &vbo1);
+    square.clean();
     
     glfwTerminate();
     return 0;

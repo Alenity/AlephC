@@ -122,7 +122,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\OpenGLThirdParty\Libs</AdditionalLibraryDirectories>
-      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;</AdditionalDependencies>
+      <AdditionalDependencies>$(CoreLibraryDependencies);%(AdditionalDependencies);glfw3.lib;opengl32.lib;freetype.lib;</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -171,9 +171,13 @@
     <ClInclude Include="audio.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="shader.h" />
-    <ClInclude Include="widget.h" />
+    <ClInclude Include="widgets.h" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="assets\alephCAudio.wav" />
+    <Content Include="assets\cmunci.ttf" />
+    <Content Include="assets\cmunrm.ttf" />
+    <Content Include="assets\cmunti.ttf" />
     <Content Include="fragShader.shad" />
     <Content Include="uiShader.shad" />
     <Content Include="vertShader.shad" />
