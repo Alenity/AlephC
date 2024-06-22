@@ -168,11 +168,11 @@
     <ClCompile Include="glad.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="audio.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="object.h" />
+    <ClInclude Include="physics.h" />
     <ClInclude Include="shader.h" />
-    <ClInclude Include="types.h" />
+    <ClInclude Include="utility.h" />
     <ClInclude Include="widgets.h" />
   </ItemGroup>
   <ItemGroup>
@@ -180,11 +180,13 @@
     <Content Include="assets\cmunci.ttf" />
     <Content Include="assets\cmunrm.ttf" />
     <Content Include="assets\cmunti.ttf" />
-    <Content Include="lightFragShader.shad" />
-    <Content Include="uiFragShader.shad" />
-    <Content Include="worldFragShader.shad" />
-    <Content Include="uiVertShader.shad" />
-    <Content Include="worldVertShader.shad" />
+    <Content Include="shaders\lightFragShader.shad" />
+    <Content Include="shaders\textFragShader.shad" />
+    <Content Include="shaders\textVertShader.shad" />
+    <Content Include="shaders\uiFragShader.shad" />
+    <Content Include="shaders\uiVertShader.shad" />
+    <Content Include="shaders\worldFragShader.shad" />
+    <Content Include="shaders\worldVertShader.shad" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

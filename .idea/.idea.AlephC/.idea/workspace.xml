@@ -7,22 +7,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de6cb5f1-ca6a-4be7-addb-e39e4bc1cd6c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AlephC/assets/cmunci.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlephC/assets/cmunrm.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlephC/assets/cmunti.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlephC/widgets.h" afterDir="false" />
+    <list default="true" id="de6cb5f1-ca6a-4be7-addb-e39e4bc1cd6c" name="Changes" comment="I have now added more classes to abstract away the long processes required to do anything with opengl. On top of that I have mapped out the algorithm I plan to use to simulate the electricity">
+      <change afterPath="$PROJECT_DIR$/AlephC/physics.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlephC/utility.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AlephC/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlephC/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/AlephC.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/AlephC.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/AlephC.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/AlephC.vcxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlephC/camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/camera.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlephC/widget.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/audio.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/lightFragShader.shad" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/lightFragShader.shad" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/object.h" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/object.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/types.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/widgets.h" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/widgets.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/worldFragShader.shad" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/worldFragShader.shad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.ilk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.obj" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.tlog/CL.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.tlog/link.command.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.tlog/link.command.1.tlog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.tlog/link.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/glad.obj" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/glad.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/vc143.idb" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/vc143.idb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/vc143.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/vc143.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/x64/Debug/AlephC.exe" beforeDir="false" afterPath="$PROJECT_DIR$/x64/Debug/AlephC.exe" afterDir="false" />
@@ -67,13 +67,14 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../OpenGLThirdParty/Include/freetype/config/ftheader.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../OpenGLThirdParty/Include/ft2build.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../OpenGLThirdParty/Include/glad.h" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../../OpenGLThirdParty/Include/glfw3.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/AlephC/AlephC.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/AlephC/audio.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/AlephC/glad.c" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/AlephC/widget.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -193,7 +194,10 @@
       <workItem from="1718643848612" duration="11512000" />
       <workItem from="1718704097622" duration="12154000" />
       <workItem from="1718785120710" duration="24307000" />
-      <workItem from="1718857359866" duration="1827000" />
+      <workItem from="1718857359866" duration="2191000" />
+      <workItem from="1718871626946" duration="3949000" />
+      <workItem from="1718900612412" duration="14840000" />
+      <workItem from="1718955023847" duration="36181000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit, learnt about the&#10;render pipeline: &#10;- Vertex Shader (mutable)&#10;- Geometry Shader (mutable)&#10;- Shape Assembly&#10;- Test and Blending&#10;- Fragment Shader (mutable)&#10;- Rasterization&#10;Although I'm not fully confident on what VBOs and VAOs are">
       <option name="closed" value="true" />
@@ -219,7 +223,23 @@
       <option name="project" value="LOCAL" />
       <updated>1718315775979</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="New widget class that allows me to create widgets on the fly by specifying a start position for drawing and a margin.">
+      <option name="closed" value="true" />
+      <created>1718859504125</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1718859504125</updated>
+    </task>
+    <task id="LOCAL-00005" summary="I have now added more classes to abstract away the long processes required to do anything with opengl. On top of that I have mapped out the algorithm I plan to use to simulate the electricity">
+      <option name="closed" value="true" />
+      <created>1718923775286</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1718923775286</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -236,7 +256,9 @@
     <MESSAGE value="First Commit, learnt about the&#10;render pipeline: &#10;- Vertex Shader (mutable)&#10;- Geometry Shader (mutable)&#10;- Shape Assembly&#10;- Test and Blending&#10;- Fragment Shader (mutable)&#10;- Rasterization&#10;Although I'm not fully confident on what VBOs and VAOs are" />
     <MESSAGE value="Added some audio, shader and camera header files(I still not sure whether they are library and header files or just header files but it works." />
     <MESSAGE value="The commit before the purge of camera.h, my code just won't cut it, I'm sorry" />
-    <option name="LAST_COMMIT_MESSAGE" value="The commit before the purge of camera.h, my code just won't cut it, I'm sorry" />
+    <MESSAGE value="New widget class that allows me to create widgets on the fly by specifying a start position for drawing and a margin." />
+    <MESSAGE value="I have now added more classes to abstract away the long processes required to do anything with opengl. On top of that I have mapped out the algorithm I plan to use to simulate the electricity" />
+    <option name="LAST_COMMIT_MESSAGE" value="I have now added more classes to abstract away the long processes required to do anything with opengl. On top of that I have mapped out the algorithm I plan to use to simulate the electricity" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

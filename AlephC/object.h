@@ -35,7 +35,7 @@ public:
         
     }
 
-    void draw(glm::vec3 position, Shader &worldShader, Camera &camera)
+    void draw(glm::vec3 position, Shader &worldShader, glm::mat4 model, glm::mat4 view, glm::mat4 projection)
     {
         worldPos = position;
         modelLoc = glGetUniformLocation(worldShader.ID, "model");
@@ -45,10 +45,9 @@ public:
         worldShader.use();
         glBindVertexArray(VAO);
 
-        glm::mat4 projection = glm::perspective(glm::radians(60.0f), 800.0f / 600.0f, 0.1f, 100.0f);
-        glm::mat4 model = glm::mat4(1.0f);
+        
         model = glm::translate(model, worldPos);
-        glm::mat4 view = camera.get_view_mat4();
+        
         
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
         glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));

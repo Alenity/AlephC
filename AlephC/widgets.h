@@ -4,8 +4,9 @@
 #include <glad.h>
 #include <glm/glm.hpp>
 #include <shader.h>
-#include <types.h>
-
+#include <utility.h>
+#include <string>
+#include <utility>
 
 
 struct uiVertexArr
@@ -54,7 +55,6 @@ public:
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-        // properties.colourLoc = glGetUniformLocation(properties.shader.ID, "inputColour");
         
     }
     
@@ -66,8 +66,7 @@ public:
         width = parent.width - (parent.properties.padding.x + parent.properties.padding.z + properties.margin.x + properties.margin.z);
         height = parent.height - (parent.properties.padding.y + parent.properties.padding.w + properties.margin.y + properties.margin.w);
 
-        uiVertexArr vert;
-        vert = genVertices();
+        uiVertexArr vert = genVertices();
 
         unsigned int indices[] = {
             0, 1, 3,
@@ -94,7 +93,6 @@ public:
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-        // properties.colourLoc = glGetUniformLocation(properties.shader.ID, "inputColour");
         
     }
 
@@ -133,9 +131,10 @@ public:
         return vert;
         
     }
-
+protected:
     void draw(Shader &uiShader)
     {
+        update_bounding_box();
         int colourLoc = glGetUniformLocation(uiShader.ID, "inputColour");
         uiShader.use();
         glUniform4f(colourLoc, properties.colour.x, properties.colour.y, properties.colour.z, properties.colour.w);
@@ -144,18 +143,95 @@ public:
         glBindVertexArray(0);
     }
 
+    void update_bounding_box()
+    {
+        bounding_box[0] = pos.x;
+        bounding_box[1] = pos.x + width;
+        bounding_box[2] = pos.y;
+        bounding_box[3] = pos.y - height;
+    }
+
     void clean()
     {
         glDeleteVertexArrays(1, &VAO);
         glDeleteBuffers(1, &VBO);
         glDeleteBuffers(1, &EBO);
     }
-private:
+    unsigned int VAO, VBO, EBO;
+public:
     float width;
     float height;
+    glm::vec4 bounding_box;
     glm::vec3 pos = glm::vec3(0.0f, 0.0f, 0.0f);
     widgetProps properties;
-    unsigned int VAO, VBO, EBO;
+    
+};
+
+class Text: public Widget
+{
+public:
+    Text(Widget &parent, const widgetProps& props, const std::string& content, glm::vec3 text_colour) : Widget(parent, props)
+    {
+        text = content;
+        colour = text_colour;
+        pos.x = parent.pos.x + parent.properties.margin.x + parent.properties.padding.x;
+        pos.y = parent.pos.y - parent.properties.margin.y - parent.properties.padding.y;
+    }
+
+    void writeTo(Shader &uiShader, TextRenderer &renderer, Shader &textShader, float scale, float SCR_W, float SCR_H)
+    {
+        MousePicking picker;
+        glm::vec3 position = picker.unNormalize(pos.x, pos.y, 1920, 1080);
+        draw(uiShader);
+        renderer.render_text(textShader, text, position.x, position.y, scale, colour);
+    }
+
+    void update(const char* content)
+    {
+        text = content;
+    }
+    void update(double value)
+    {
+        num_value = value;
+    }
+    void update(glm::vec3 col)
+    {
+        colour = col;
+    }
+
+    std::string text;
+    double num_value;
+    float font_size;
+    glm::vec3 colour = glm::vec3(1.0f, 1.0f, 1.0f);
+};
+
+class Button: public Widget
+{
+    Button(Widget &parent, widgetProps props) : Widget(parent, props)
+    {
+        
+    }
+    
+};
+
+class Container: public Widget
+{
+    Container(glm::vec3 position, widgetProps props) : Widget(position, props)
+    {
+        
+    }
+};
+
+class Slider: public Widget
+{
+    Slider(glm::vec3 position, widgetProps props, Text* link) : Widget(position, props)
+    {
+        linkedWidget = link;
+    }
+
+private:
+    Text* linkedWidget;
+    
 };
 
 #endif
