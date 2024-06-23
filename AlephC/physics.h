@@ -103,7 +103,7 @@ public:
     {
         
     }
-private:
+
     double lightspeed = 3.0e8;
     double elementary_charge = 1.60e-19;
     double electron_rest_mass = 9.11e-31;

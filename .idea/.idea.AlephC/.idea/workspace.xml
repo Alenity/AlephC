@@ -7,22 +7,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de6cb5f1-ca6a-4be7-addb-e39e4bc1cd6c" name="Changes" comment="I have now added more classes to abstract away the long processes required to do anything with opengl. On top of that I have mapped out the algorithm I plan to use to simulate the electricity">
-      <change afterPath="$PROJECT_DIR$/AlephC/physics.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlephC/utility.h" afterDir="false" />
+    <list default="true" id="de6cb5f1-ca6a-4be7-addb-e39e4bc1cd6c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/AlephC/AlephC.cbp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlephC/AlephC.depend" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlephC/AlephC.layout" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlephC/Debug/AlephC.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlephC/Debug/glad.o" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlephC/components.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlephC/shaders/pickingFrag.shad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AlephC/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlephC/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/AlephC.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/AlephC.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/AlephC.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/AlephC.vcxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlephC/audio.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlephC/lightFragShader.shad" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/lightFragShader.shad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/object.h" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/object.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlephC/types.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/physics.h" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/physics.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/shader.h" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/shader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/utility.h" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/utility.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/widgets.h" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/widgets.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlephC/worldFragShader.shad" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/worldFragShader.shad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.ilk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.obj" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.obj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.tlog/CL.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.tlog/CL.read.1.tlog" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.tlog/link.read.1.tlog" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.tlog/link.read.1.tlog" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/vc143.idb" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/vc143.idb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/vc143.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/vc143.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/x64/Debug/AlephC.exe" beforeDir="false" afterPath="$PROJECT_DIR$/x64/Debug/AlephC.exe" afterDir="false" />
@@ -49,7 +52,7 @@
     </excluded-from-favorite>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -67,8 +70,38 @@
   }
 }</component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///dummy.cpp" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../OpenGLThirdParty/Include/freetype/config/ftheader.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../OpenGLThirdParty/Include/ft2build.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../../OpenGLThirdParty/Include/glad.h" root0="SKIP_HIGHLIGHTING" />
@@ -88,33 +121,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;C++ Project.AlephC.executor&quot;: &quot;Run&quot;,
-    &quot;C++ Project.Local Windows Debugger.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "C++ Project.AlephC.executor": "Run",
+    "C++ Project.Local Windows Debugger.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "development",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.editor",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\Daniel\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\Daniel\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\Daniel\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\Daniel\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
+      "C:\\Users\\Daniel\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
+      "C:\\Users\\Daniel\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="AlephC" type="CppProject" factoryName="C++ Project">
       <configuration_1>
@@ -198,6 +231,8 @@
       <workItem from="1718871626946" duration="3949000" />
       <workItem from="1718900612412" duration="14840000" />
       <workItem from="1718955023847" duration="36181000" />
+      <workItem from="1719046116144" duration="30484000" />
+      <workItem from="1719093540467" duration="14245000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit, learnt about the&#10;render pipeline: &#10;- Vertex Shader (mutable)&#10;- Geometry Shader (mutable)&#10;- Shape Assembly&#10;- Test and Blending&#10;- Fragment Shader (mutable)&#10;- Rasterization&#10;Although I'm not fully confident on what VBOs and VAOs are">
       <option name="closed" value="true" />
@@ -239,7 +274,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718923775286</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Alright, so by this point, I'm not sure I'll be done by Sunday night. I have text to render, which is great, however, no circuit building system, circuit loop, formulae matching algorithms yet. Not to talk about the absolutely non-existant mousue clicking, or a UI to even click on.">
+      <option name="closed" value="true" />
+      <created>1719064495025</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1719064495025</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,7 +301,8 @@
     <MESSAGE value="The commit before the purge of camera.h, my code just won't cut it, I'm sorry" />
     <MESSAGE value="New widget class that allows me to create widgets on the fly by specifying a start position for drawing and a margin." />
     <MESSAGE value="I have now added more classes to abstract away the long processes required to do anything with opengl. On top of that I have mapped out the algorithm I plan to use to simulate the electricity" />
-    <option name="LAST_COMMIT_MESSAGE" value="I have now added more classes to abstract away the long processes required to do anything with opengl. On top of that I have mapped out the algorithm I plan to use to simulate the electricity" />
+    <MESSAGE value="Alright, so by this point, I'm not sure I'll be done by Sunday night. I have text to render, which is great, however, no circuit building system, circuit loop, formulae matching algorithms yet. Not to talk about the absolutely non-existant mousue clicking, or a UI to even click on." />
+    <option name="LAST_COMMIT_MESSAGE" value="Alright, so by this point, I'm not sure I'll be done by Sunday night. I have text to render, which is great, however, no circuit building system, circuit loop, formulae matching algorithms yet. Not to talk about the absolutely non-existant mousue clicking, or a UI to even click on." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

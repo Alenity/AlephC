@@ -169,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
+    <ClInclude Include="components.h" />
     <ClInclude Include="object.h" />
     <ClInclude Include="physics.h" />
     <ClInclude Include="shader.h" />
@@ -181,6 +182,7 @@
     <Content Include="assets\cmunrm.ttf" />
     <Content Include="assets\cmunti.ttf" />
     <Content Include="shaders\lightFragShader.shad" />
+    <Content Include="shaders\pickingFrag.shad" />
     <Content Include="shaders\textFragShader.shad" />
     <Content Include="shaders\textVertShader.shad" />
     <Content Include="shaders\uiFragShader.shad" />

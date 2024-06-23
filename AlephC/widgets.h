@@ -4,9 +4,10 @@
 #include <glad.h>
 #include <glm/glm.hpp>
 #include <shader.h>
+#include <vector>
 #include <utility.h>
 #include <string>
-#include <utility>
+#include <memory>
 
 
 struct uiVertexArr
@@ -14,10 +15,18 @@ struct uiVertexArr
     float vertices[12];
 };
 
+struct widgetProps {
+    unsigned int ID;
+    bool mouse_interactive;
+    glm::vec4 padding = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
+    glm::vec4 margin = glm::vec4(0.0f, 0.0f, 0.0f, 0.0f);
+    glm::vec4 colour = glm::vec4(1.0f, 1.0f, 1.0f, 0.5f);
+};
+
 class Widget
 {
 public:
-    Widget(glm::vec3 position, widgetProps props)
+    Widget(glm::vec3 position, const widgetProps& props, Shader *shader, Shader *pickShader) : shader(shader), pickShader(pickShader)
     {
         properties = props;
         pos = position;
@@ -25,18 +34,17 @@ public:
         pos.y -= properties.margin.y;
         width = 1 - (pos.x + properties.margin.z);
         height = 2 - (1 - pos.y + properties.margin.w);
-        
-        uiVertexArr vert;
-        vert = genVertices();
+
+        uiVertexArr vert = genVertices();
 
         unsigned int indices[] = {
             0, 1, 3,
             0, 3, 2
         };
-        
+
 
         glGenVertexArrays(1, &VAO);
-        
+
         glGenBuffers(1, &VBO);
         glGenBuffers(1, &EBO);
 
@@ -55,10 +63,10 @@ public:
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-        
+
     }
-    
-    Widget(Widget &parent, widgetProps props)
+
+    Widget(const Widget &parent, const widgetProps& props, Shader *shader, Shader *pickShader) : shader(shader), pickShader(pickShader)
     {
         properties = props;
         pos.x = parent.pos.x + parent.properties.padding.x + properties.margin.x;
@@ -74,7 +82,7 @@ public:
         };
 
         glGenVertexArrays(1, &VAO);
-        
+
         glGenBuffers(1, &VBO);
         glGenBuffers(1, &EBO);
 
@@ -93,16 +101,16 @@ public:
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-        
+
     }
 
-    uiVertexArr genVertices()
+    uiVertexArr genVertices() const
     {
         uiVertexArr vert;
         // create x coords
         for (int i = 0; i < 12; i += 3)
         {
-            if(i%2 == 0) 
+            if(i%2 == 0)
             {
                 vert.vertices[i] = pos.x;
             }else
@@ -116,7 +124,7 @@ public:
             if(i < 5)
             {
                 vert.vertices[i] = pos.y;
-                
+
             } else
             {
                 vert.vertices[i] = pos.y - height;
@@ -129,64 +137,87 @@ public:
         }
 
         return vert;
-        
+
     }
-protected:
-    void draw(Shader &uiShader)
+
+    void draw()
     {
-        update_bounding_box();
-        int colourLoc = glGetUniformLocation(uiShader.ID, "inputColour");
-        uiShader.use();
+        if (properties.mouse_interactive)
+        {
+            MousePicking picker;
+            picker.Init(SCR_WIDTH, SCR_HEIGHT);
+            picker.enable_writing();
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+            //hidden draw call goes here
+            pickShader->use();
+            int gObjectIndexLoc = glGetUniformLocation(pickShader->ID, "gObjectIndex");
+            int gDrawIndexLoc = glGetUniformLocation(pickShader->ID, "gDrawIndex");
+            glUniform1i(gObjectIndexLoc, ID);
+            glUniform1i(gDrawIndexLoc, 0);
+            glBindVertexArray(VAO);
+            glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+            glBindVertexArray(0);
+
+            picker.disable_writing();
+        }
+        int colourLoc = glGetUniformLocation(shader->ID, "inputColour");
+        shader->use();
         glUniform4f(colourLoc, properties.colour.x, properties.colour.y, properties.colour.z, properties.colour.w);
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
     }
 
-    void update_bounding_box()
-    {
-        bounding_box[0] = pos.x;
-        bounding_box[1] = pos.x + width;
-        bounding_box[2] = pos.y;
-        bounding_box[3] = pos.y - height;
-    }
-
-    void clean()
+    void clean() const
     {
         glDeleteVertexArrays(1, &VAO);
         glDeleteBuffers(1, &VBO);
         glDeleteBuffers(1, &EBO);
     }
-    unsigned int VAO, VBO, EBO;
-public:
+
     float width;
     float height;
-    glm::vec4 bounding_box;
     glm::vec3 pos = glm::vec3(0.0f, 0.0f, 0.0f);
     widgetProps properties;
-    
+    Shader* shader;
+    Shader* pickShader;
+    unsigned int ID;
+    unsigned int VAO, VBO, EBO;
+
 };
+
+
 
 class Text: public Widget
 {
 public:
-    Text(Widget &parent, const widgetProps& props, const std::string& content, glm::vec3 text_colour) : Widget(parent, props)
+    Text(glm::vec3 position, const widgetProps& props, const std::string& content, glm::vec3 text_colour, TextRenderer* rend, Shader* text_shader, Shader* uiShader, Shader* pick_shader) : Widget(position, props, uiShader, pick_shader)
     {
         text = content;
         colour = text_colour;
+        textShader = text_shader;
+        renderer = rend;
+        pos.x = position.x + props.margin.x;
+        pos.y = position.y - props.margin.y;
+    }
+    Text(const Widget &parent, const widgetProps& props, const std::string& content, glm::vec3 text_colour, TextRenderer* rend, Shader* text_shader, Shader* uiShader, Shader* pick_shader) : Widget(parent, props, uiShader, pick_shader)
+    {
+        text = content;
+        colour = text_colour;
+        textShader = text_shader;
+        renderer = rend;
         pos.x = parent.pos.x + parent.properties.margin.x + parent.properties.padding.x;
         pos.y = parent.pos.y - parent.properties.margin.y - parent.properties.padding.y;
     }
 
-    void writeTo(Shader &uiShader, TextRenderer &renderer, Shader &textShader, float scale, float SCR_W, float SCR_H)
+    void draw()
     {
-        MousePicking picker;
-        glm::vec3 position = picker.unNormalize(pos.x, pos.y, 1920, 1080);
-        draw(uiShader);
-        renderer.render_text(textShader, text, position.x, position.y, scale, colour);
+        glm::vec3 position = unNormalize(pos.x, pos.y, SCR_WIDTH, SCR_HEIGHT);
+        renderer->render_text(*textShader, text, position.x, SCR_HEIGHT - position.y, 1.0f, colour);
     }
 
-    void update(const char* content)
+    void update(std::string content)
     {
         text = content;
     }
@@ -201,37 +232,79 @@ public:
 
     std::string text;
     double num_value;
-    float font_size;
+    TextRenderer* renderer;
+    Shader* textShader;
     glm::vec3 colour = glm::vec3(1.0f, 1.0f, 1.0f);
 };
 
+class Image: public Widget
+{
+public:
+    Image(const Widget &parent, const widgetProps& props, Shader* uiShader, Shader* pick_shader) : Widget(parent, props, uiShader, pick_shader)
+    {
+
+    }
+    Image(glm::vec3 position, const widgetProps& props, Shader* uiShader, Shader* pick_shader) : Widget(position, props, uiShader, pick_shader)
+    {
+
+    }
+};
+
+
 class Button: public Widget
 {
-    Button(Widget &parent, widgetProps props) : Widget(parent, props)
+public:
+    Button(const Widget &parent, const widgetProps& props, Shader* uiShader, Shader* pick_shader) : Widget(parent, props, uiShader, pick_shader)
     {
-        
+
     }
-    
+
 };
 
 class Container: public Widget
 {
-    Container(glm::vec3 position, widgetProps props) : Widget(position, props)
+public:
+    Container(glm::vec3 position, const widgetProps& props, Shader* uiShader, Shader* pick_shader) : Widget(position, props, uiShader, pick_shader)
     {
-        
+
     }
+    Container(const Widget &parent, const widgetProps& props, Shader* uiShader, Shader* pick_shader) : Widget(parent, props, uiShader, pick_shader)
+    {
+
+    }
+
 };
 
 class Slider: public Widget
 {
-    Slider(glm::vec3 position, widgetProps props, Text* link) : Widget(position, props)
+    Slider(glm::vec3 position, const widgetProps& props, Text* link, Shader* uiShader, Shader* pick_shader) : Widget(position, props, uiShader, pick_shader)
     {
         linkedWidget = link;
     }
 
+    void draw(Shader &uiShader);
+
 private:
     Text* linkedWidget;
-    
+
 };
+
+struct WTNode
+{
+    Widget* widget;
+    std::vector<std::shared_ptr<WTNode>> children;
+
+    WTNode(Widget* widget) : widget(widget) {}
+
+    void Render()
+    {
+        widget->draw();
+        for (std::shared_ptr<WTNode> node : children)
+        {
+            node->widget->draw();
+        }
+    }
+};
+
 
 #endif

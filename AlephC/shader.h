@@ -13,6 +13,7 @@ class Shader
 public:
     unsigned int ID;
 
+    Shader();
     Shader(const char* vertexPath, const char* fragmentPath)
     {
         std::string vertexCode;
@@ -27,6 +28,7 @@ public:
             // open files
             vShaderFile.open(vertexPath);
             fShaderFile.open(fragmentPath);
+            
             std::stringstream vShaderStream, fShaderStream;
             // read file's buffer contents into streams
             vShaderStream << vShaderFile.rdbuf();
@@ -36,10 +38,11 @@ public:
             fShaderFile.close();
             // convert stream into string
             vertexCode   = vShaderStream.str();
-            fragmentCode = fShaderStream.str();		
+            fragmentCode = fShaderStream.str();
         }
         catch(std::ifstream::failure e)
         {
+            
             std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
         }
         const char* vShaderCode = vertexCode.c_str();
@@ -58,7 +61,7 @@ public:
             glGetShaderInfoLog(vertex, 512, nullptr, infoLog);
             std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << "\n";
         }
-
+        
         fragment = glCreateShader(GL_FRAGMENT_SHADER);
         glShaderSource(fragment, 1, &fShaderCode, nullptr);
         glCompileShader(fragment);

@@ -1,0 +1,11 @@
+#version 330 core
+
+uniform int gObjectIndex;
+uniform int gDrawIndex;
+
+out vec3 FragColour;
+
+void main() 
+{
+    FragColour = vec3(gObjectIndex, gDrawIndex, gl_PrimitiveID);
+}

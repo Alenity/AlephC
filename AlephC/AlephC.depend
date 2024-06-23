@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1717523533 source:c:\users\daniel\code\alephc\alephc\glad.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<glad/glad.h>
+	<windows.h>
+	<winapifamily.h>
+	<dlfcn.h>
+
+1717523533 c:\openglthirdparty\include\\glad\glad.h
+	<KHR/khrplatform.h>
+
+1717523533 c:\openglthirdparty\include\\khr\khrplatform.h
+	<stdint.h>
+	<inttypes.h>
+	<stdint.h>
+
