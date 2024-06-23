@@ -5,15 +5,22 @@
 #include <glm/glm.hpp>
 #include <shader.h>
 #include <vector>
+#include <map>
 #include <utility.h>
 #include <string>
+#include <picker.h>
 #include <memory>
 
+
+class Widget;
 
 struct uiVertexArr
 {
     float vertices[12];
 };
+
+std::map<int, Widget*> widgetIDMap;
+
 
 struct widgetProps {
     unsigned int ID;
@@ -28,6 +35,17 @@ class Widget
 public:
     Widget(glm::vec3 position, const widgetProps& props, Shader *shader, Shader *pickShader) : shader(shader), pickShader(pickShader)
     {
+        
+        colourID.x = RNG(1, 255);
+        colourID.y = RNG(1, 255);
+        colourID.z = RNG(1, 255);
+        while(widgetIDMap.emplace(colourID.x, this).second == false)
+        {
+            colourID.x = RNG(1, 255);
+            colourID.y = RNG(1, 255);
+            colourID.z = RNG(1, 255);
+        }
+        
         properties = props;
         pos = position;
         pos.x += properties.margin.x;
@@ -68,6 +86,18 @@ public:
 
     Widget(const Widget &parent, const widgetProps& props, Shader *shader, Shader *pickShader) : shader(shader), pickShader(pickShader)
     {
+        
+        colourID.x = RNG(1, 255);
+        colourID.y = RNG(1, 255);
+        colourID.z = RNG(1, 255);
+        while(widgetIDMap.emplace(colourID.x, this).second == false)
+        {
+            colourID.x = RNG(1, 255);
+            colourID.y = RNG(1, 255);
+            colourID.z = RNG(1, 255);
+        }
+        
+        
         properties = props;
         pos.x = parent.pos.x + parent.properties.padding.x + properties.margin.x;
         pos.y = parent.pos.y - parent.properties.padding.y - properties.margin.y;
@@ -140,21 +170,21 @@ public:
 
     }
 
-    void draw()
+    void draw(MousePicking &picker)
     {
         if (properties.mouse_interactive)
         {
-            MousePicking picker;
-            picker.Init(SCR_WIDTH, SCR_HEIGHT);
             picker.enable_writing();
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
             //hidden draw call goes here
             pickShader->use();
-            int gObjectIndexLoc = glGetUniformLocation(pickShader->ID, "gObjectIndex");
-            int gDrawIndexLoc = glGetUniformLocation(pickShader->ID, "gDrawIndex");
-            glUniform1i(gObjectIndexLoc, ID);
-            glUniform1i(gDrawIndexLoc, 0);
+            int xLoc = glGetUniformLocation(pickShader->ID, "colourIDX");
+            int yLoc = glGetUniformLocation(pickShader->ID, "colourIDY");
+            int zLoc = glGetUniformLocation(pickShader->ID, "colourIDZ");
+            glUniform1i(xLoc, colourID.x);
+            glUniform1i(yLoc, colourID.y);
+            glUniform1i(zLoc, colourID.z);
             glBindVertexArray(VAO);
             glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
             glBindVertexArray(0);
@@ -182,6 +212,7 @@ public:
     widgetProps properties;
     Shader* shader;
     Shader* pickShader;
+    glm::vec3 colourID;
     unsigned int ID;
     unsigned int VAO, VBO, EBO;
 
@@ -296,12 +327,12 @@ struct WTNode
 
     WTNode(Widget* widget) : widget(widget) {}
 
-    void Render()
+    void Render(MousePicking &picker)
     {
-        widget->draw();
+        widget->draw(picker);
         for (std::shared_ptr<WTNode> node : children)
         {
-            node->widget->draw();
+            node->widget->draw(picker);
         }
     }
 };

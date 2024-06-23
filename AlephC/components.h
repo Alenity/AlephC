@@ -9,13 +9,15 @@
 
 using namespace std;
 
-class Component
+class Component : public Object3D
 {
 public:
     Component();
 
     string name;
     ComponentProps properties;
+
+    void 
 };
 
 struct CTNode

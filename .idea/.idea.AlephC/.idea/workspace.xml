@@ -7,20 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de6cb5f1-ca6a-4be7-addb-e39e4bc1cd6c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/AlephC/AlephC.cbp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlephC/AlephC.depend" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlephC/AlephC.layout" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlephC/Debug/AlephC.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlephC/Debug/glad.o" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlephC/components.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/AlephC/shaders/pickingFrag.shad" afterDir="false" />
+    <list default="true" id="de6cb5f1-ca6a-4be7-addb-e39e4bc1cd6c" name="Changes" comment="Changed a lot, still haven't even gotten the main part of the app in and the deadline is tomorrow, man I wish I could present on Wednesday">
+      <change afterPath="$PROJECT_DIR$/AlephC/picker.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.AlephC/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.AlephC/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/AlephC.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/AlephC.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/AlephC.vcxproj" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/AlephC.vcxproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlephC/object.h" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/object.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlephC/physics.h" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/physics.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlephC/shader.h" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/shader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/components.h" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/components.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlephC/shaders/pickingFrag.shad" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/shaders/pickingFrag.shad" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/utility.h" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/utility.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/widgets.h" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/widgets.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.ilk" beforeDir="false" afterPath="$PROJECT_DIR$/AlephC/x64/Debug/AlephC.ilk" afterDir="false" />
@@ -232,7 +225,7 @@
       <workItem from="1718900612412" duration="14840000" />
       <workItem from="1718955023847" duration="36181000" />
       <workItem from="1719046116144" duration="30484000" />
-      <workItem from="1719093540467" duration="14245000" />
+      <workItem from="1719093540467" duration="18759000" />
     </task>
     <task id="LOCAL-00001" summary="First Commit, learnt about the&#10;render pipeline: &#10;- Vertex Shader (mutable)&#10;- Geometry Shader (mutable)&#10;- Shape Assembly&#10;- Test and Blending&#10;- Fragment Shader (mutable)&#10;- Rasterization&#10;Although I'm not fully confident on what VBOs and VAOs are">
       <option name="closed" value="true" />
@@ -282,7 +275,15 @@
       <option name="project" value="LOCAL" />
       <updated>1719064495025</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Changed a lot, still haven't even gotten the main part of the app in and the deadline is tomorrow, man I wish I could present on Wednesday">
+      <option name="closed" value="true" />
+      <created>1719111361699</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1719111361699</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,7 +303,8 @@
     <MESSAGE value="New widget class that allows me to create widgets on the fly by specifying a start position for drawing and a margin." />
     <MESSAGE value="I have now added more classes to abstract away the long processes required to do anything with opengl. On top of that I have mapped out the algorithm I plan to use to simulate the electricity" />
     <MESSAGE value="Alright, so by this point, I'm not sure I'll be done by Sunday night. I have text to render, which is great, however, no circuit building system, circuit loop, formulae matching algorithms yet. Not to talk about the absolutely non-existant mousue clicking, or a UI to even click on." />
-    <option name="LAST_COMMIT_MESSAGE" value="Alright, so by this point, I'm not sure I'll be done by Sunday night. I have text to render, which is great, however, no circuit building system, circuit loop, formulae matching algorithms yet. Not to talk about the absolutely non-existant mousue clicking, or a UI to even click on." />
+    <MESSAGE value="Changed a lot, still haven't even gotten the main part of the app in and the deadline is tomorrow, man I wish I could present on Wednesday" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed a lot, still haven't even gotten the main part of the app in and the deadline is tomorrow, man I wish I could present on Wednesday" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

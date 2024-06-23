@@ -8,10 +8,11 @@
 #include <camera.h>
 #include <widgets.h>
 #include <object.h>
+#include <picker.h>
 
 
 Camera camera;
-MousePicking picker;
+MousePicking mainPicker;
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -72,7 +73,11 @@ void mouse_click_callback(GLFWwindow* window, int button, int action, int mods)
     {
         double xpos, ypos;
         glfwGetCursorPos(window, &xpos, &ypos);
-        
+        MousePicking::PixelInfo info = mainPicker.ReadPixel((int)xpos, (int)ypos);
+        if(widgetIDMap[info.ObjectID])
+        {
+            std::cout << "HIT!\n";
+        }
         
     }
 };
@@ -120,6 +125,7 @@ GLFWwindow* glfwSetup()
 int main()
 {
     GLFWwindow* window = glfwSetup();
+    mainPicker.Init(SCR_WIDTH, SCR_HEIGHT);
     TextRenderer CMUSerif("./assets/cmunti.ttf", 28);
     AudioSys soundEngine;
     soundEngine.play_single_sound("./assets/alephCAudio.wav");
@@ -141,7 +147,6 @@ int main()
     glEnable(GL_DEPTH_TEST);
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    picker.Init(SCR_WIDTH, SCR_HEIGHT);
 
     cubeVertexArr standard =
      {{
