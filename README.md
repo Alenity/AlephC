@@ -50,11 +50,6 @@ AlephC uses a custom-built rendering pipeline optimized for speed rather than pr
 
 AlephC is a bridge between language and logic. If you're interested in NLP, Computer Graphics, or Pedagogy, I'd love your help!
 
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.
-
 ---
 
 > "The essence of mathematics is not to make simple things complicated, but to make complicated things simple."
