@@ -4,7 +4,7 @@
 
 ## 🧠 The Concept
 
-Why write complex Python scripts when you can just say what you want? AlephC interprets human-readable commands and maps them to high-performance geometric and physical entities.
+AlephC interprets human-readable commands and maps them to high-performance geometric and physical entities.
 
 * **Input:** *"Draw a unit circle and show the sine wave derivation."*
 * **Output:** An immediate, smooth animation rendered on a real-time canvas.
@@ -44,14 +44,19 @@ AlephC uses a custom-built rendering pipeline optimized for speed rather than pr
 * [ ] **NLP Refinement:** Improving the parser to handle complex multi-step instructions.
 * [ ] **Physics Integration:** Adding a 2D rigid-body solver for "active" animations.
 * [ ] **CS Module:** Live data structure visualizations (linked lists, trees).
-* [ ] **Voice-to-Canvas:** Integration with STT (Speech-to-Text) for truly hands-free teaching.
+* [ ] **Voice-to-Canvas:** Integration with STT (Speech-to-Text) for truly hands-free explanations.
 
 ## 🤝 Contributing
 
-AlephC is a bridge between language and logic. If you're interested in NLP, Computer Graphics, or Pedagogy, we'd love your help!
+AlephC is a bridge between language and logic. If you're interested in NLP, Computer Graphics, or Pedagogy, I'd love your help!
+
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.
 
 ---
 
-### What's next for AlephC?
+> "The essence of mathematics is not to make simple things complicated, but to make complicated things simple."
 
-Would you like me to help you design a **Cheat Sheet** of example commands for the README, or perhaps create a **Technical Architecture** section explaining how you're parsing the natural language (e.g., via Regex, LLMs, or a custom grammar)?
+---
