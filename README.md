@@ -1,9 +1,3 @@
-That changes things significantly—and in a very cool way! You're essentially building a **Natural Language Interface (NLI)** for mathematical visualization. Moving away from standard Manim syntax to a WolframAlpha-style "intent-based" system makes this much more accessible for teachers who don't want to live-code during a lecture.
-
-Here is a revised `README.md` that reflects the custom engine and the natural language command structure.
-
----
-
 # AlephC: The Natural Language Math Canvas
 
 **AlephC** is an intelligent, real-time visualization engine that turns natural language queries into beautiful STEM animations. Inspired by the visual clarity of Manim and the computational intuition of WolframAlpha, AlephC allows you to "speak" your diagrams into existence.
