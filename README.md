@@ -1,4 +1,4 @@
-# AlephC: The Real-Time Mathematic Visualizer
+# AlephC: The Real-Time Mathematics Visualizer
 
 **AlephC** is an intelligent, real-time visualization engine that turns natural language queries into beautiful STEM animations. Inspired by the visual clarity of Manim and the computational intuition of WolframAlpha, AlephC allows you to "speak" your diagrams into existence.
 
